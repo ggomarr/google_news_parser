@@ -4,15 +4,14 @@ import random
 import logging
 import urllib2 
 from lxml import etree
-import parameters as param
 
 class gnp:
-    def __init__(self,root_url,
+    def __init__(self,params='hl=en&ned=us',root_url='https://news.google.com/news/',
                  max_retries=10,wait_between_requests=5,
                  log_level=logging.DEBUG):
-        self.root_url=root_url.format('')
-        self.search_url=root_url.format('search/section/q/{q}/{q}')
-        self.explore_url=root_url.format('explore/section/q/{q}/{q}')
+        self.root_url=root_url+'?'+params
+        self.search_url=root_url+'search/section/q/{q}/{q}'+'?'+params
+        self.explore_url=root_url+'explore/section/q/{q}/{q}'+'?'+params
         self.max_retries=max_retries
         self.wait_between_requests=wait_between_requests
         self.log_level=log_level
