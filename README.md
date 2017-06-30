@@ -72,8 +72,21 @@ The function should return a dictionary like this one:
 - Or you can ask the parser to dig on its own into the news of the day:
 ```
 gnp=gnp('hl=en&ned=us')
-gnp.dig_into_news(dig_levels=1,seed_news={'Business':['NASDAQ','Oil']})
+gnp.dig_into_news(dig_levels=1,
+                  seed_news=None,
+                  seed_headlines=True,
+                  seed_sections=True)
 ```
+...or into specific areas or interest:
+```
+gnp=gnp('hl=en&ned=us')
+gnp.dig_into_news(dig_levels=1,
+                  seed_news={'Business':['NASDAQ','Oil']},
+                  seed_headlines=False,
+                  seed_sections=False)
+```
+...or a combination of them.
+
 In this case the resulting links will be contained in the parser's news dictionary, which is huge and looks just as the examples above, so I will not show it here. A slightly better formatted dictionary can be extracted using the parser's export_news_list method.
 
 Let me know if you find it useful!
