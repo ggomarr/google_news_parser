@@ -10,8 +10,8 @@ Some examples:
 
 - Grabbing the main news of the day:
 ```
-gnp=gnp('hl=en&ned=us')
-gnp.extract_main_news()
+my_gnp=gnp('hl=en&ned=us')
+my_gnp.extract_main_news()
 ```
 The function should return a dictionary like this one:
 ```
