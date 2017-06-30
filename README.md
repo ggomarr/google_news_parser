@@ -46,8 +46,8 @@ The function should return a dictionary like this one:
 
 - Grabbing news about the topic 'very furry dogs':
 ```
-gnp=gnp('hl=en&ned=us')
-gnp.extract_topic_news('very furry dogs')
+my_gnp=gnp('hl=en&ned=us')
+my_gnp.extract_topic_news('very furry dogs')
 ```
 The function should return a dictionary like this one:
 ```
@@ -71,19 +71,19 @@ The function should return a dictionary like this one:
 
 - Or you can ask the parser to dig on its own into the news of the day:
 ```
-gnp=gnp('hl=en&ned=us')
-gnp.dig_into_news(dig_levels=1,
-                  seed_news=None,
-                  seed_headlines=True,
-                  seed_sections=True)
+my_gnp=gnp('hl=en&ned=us')
+my_gnp.dig_into_news(dig_levels=1,
+                     seed_news=None,
+                     seed_headlines=True,
+                     seed_sections=True)
 ```
 ...or into specific areas or interest:
 ```
-gnp=gnp('hl=en&ned=us')
-gnp.dig_into_news(dig_levels=1,
-                  seed_news={'Business':['NASDAQ','Oil']},
-                  seed_headlines=False,
-                  seed_sections=False)
+my_gnp=gnp('hl=en&ned=us')
+my_gnp.dig_into_news(dig_levels=1,
+                     seed_news={'Business':['NASDAQ','Oil']},
+                     seed_headlines=False,
+                     seed_sections=False)
 ```
 ...or a combination of them.
 
