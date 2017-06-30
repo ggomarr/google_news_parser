@@ -24,7 +24,7 @@ class gnp:
         logger.debug('Adding main news...')
         if seed_news!=None:
             self.seed_news(seed_news)
-        if seld_headlines:
+        if seed_headlines:
             self.add_news(self.extract_main_news())
         if seed_sections:
             news_lst=[]
