@@ -17,23 +17,25 @@ class gnp:
         self.log_level=log_level
         self.news={}
         self.checked_news=set()
-    def dig_into_news(self,dig_levels=0,seed_news=None):
+    def dig_into_news(self,dig_levels=0,seed_news=None,seed_headlines=True,seed_sections=True):
         logger=logging.getLogger('parse_url')
         logger.setLevel(self.log_level)
         logger.info('Digging for news {} levels down...'.format(dig_levels))
         logger.debug('Adding main news...')
         if seed_news!=None:
             self.seed_news(seed_news)
-        self.add_news(self.extract_main_news())
-        news_lst=[]
-        for theme in self.news:
-            logger.debug('Adding main news about {}...'.format(theme))
-            time.sleep((1+random.random())*self.wait_between_requests)
-            news_lst.append(self.extract_topic_news(theme))
-            self.checked_news.add(theme)
-        logger.debug('Merging theme news into main...')
-        for news in news_lst:
-            self.add_news(news)
+        if self_headlines:
+            self.add_news(self.extract_main_news())
+        if seed_sections:
+            news_lst=[]
+            for theme in self.news:
+                logger.debug('Adding main news about {}...'.format(theme))
+                time.sleep((1+random.random())*self.wait_between_requests)
+                news_lst.append(self.extract_topic_news(theme))
+                self.checked_news.add(theme)
+            logger.debug('Merging theme news into main...')
+            for news in news_lst:
+                self.add_news(news)
         for depth in range(dig_levels):
             logger.debug('Digging down to level {}...'.format(depth))
             news_lst=[]
