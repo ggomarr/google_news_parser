@@ -115,7 +115,7 @@ class gnp:
         if page!=False:
             try:
                 logger.debug('Getting a hold of the news section...')
-                groups=page[1][1][3][0][0][0]
+                groups=page[1][1][3][1][0][0]
                 for group in groups:
                     try:
                         logger.debug('Grabbing new section...')
