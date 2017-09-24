@@ -100,10 +100,13 @@ class gnp:
         return list(set(out))
     def grab_card_related_topics(self,card):
         related_topics=[]
-        if len(card[0][0][0])>3:
-            related_topics_node=card[0][0][0][3]
+        if len(card[0][0])>3:
+            if len(card[0][0])==4:
+                related_topics_node=card[0][0][0][3]
+            elif len(card[0][0])==5:
+                related_topics_node=card[0][0][2][1]
             for topic_node in related_topics_node[1:]:
-                topic=topic_node[0][0].text.encode('iso-8859-1')
+                topic=topic_node[0][0].text
                 related_topics.append(topic)
         return related_topics
     def extract_main_news(self):
