@@ -118,7 +118,8 @@ class gnp:
         if page!=False:
             try:
                 logger.debug('Getting a hold of the news section...')
-                groups=page[1][1][3][1][0][0]
+#                groups=page[1][1][3][1][0][0] # Changed on 2017/12/06
+                groups=page[1][4][0][2][0][0]
                 for group in groups:
                     try:
                         logger.debug('Grabbing new section...')
@@ -161,7 +162,8 @@ class gnp:
         if page!=False:
             try:
                 logger.debug('Grabbing cards about {}...'.format(topic))
-                cards=page[1][1][3][0][0][0][0][0]
+#                cards=page[1][1][3][0][0][0][0][0] # Changed on 2017/12/06
+                cards=page[1][4][0][1][0][0][0][0]
                 for card_pos in range(1,len(cards)):
                     try:
                         logger.debug('Grabbing card {} about {}...'.format(card_pos,topic))
