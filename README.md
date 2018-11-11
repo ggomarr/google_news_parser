@@ -1,16 +1,13 @@
 # Google News Parser
 
-Google changed the structure of Google News today, which broke an important portion of a project I am working on. In order to grab news links I was using (a slightly modified version of) the python library gnp, which stopped working completely.
+Google changed the structure of Google News, which broke an important portion of a project I am working on. In order to grab news links I was using (a slightly modified version of) the python library gnp, which stopped working completely.
 
-This is the result of a frantic effort to rebuild its functionality in as little time as possible (in order for the project not to be impacted). It still works very well!
+This is the result of a frantic effort to rebuild its functionality in as little time as possible (in order for the project not to be impacted). It still works quite well!
 
-The usage is simple: create an instace of the class with a string containing the parameters that determine the news edition and the language and tell the parser to dig into today's news (and any topics you want to focus on) as deep as you want, although the amount of links gets out of hand fairly quickly. The parser can of course do either one (dig by itself into today's news and search for specific topics) independently.
+The usage is simple: create an instace of the class with a string containing the parameters that determine the news edition and the language and tell the parser to grab today's news.
 
-Some examples:
-
-- Grabbing the main news of the day:
 ```
-my_gnp=gnp('hl=en&ned=us')
+my_gnp=gnp(lang='hl=en-US&gl=US&ceid=US:en')
 my_gnp.extract_main_news()
 ```
 The function should return a dictionary like this one:
@@ -44,49 +41,6 @@ The function should return a dictionary like this one:
 }
 ```
 
-- Grabbing news about the topic 'very furry dogs':
-```
-my_gnp=gnp('hl=en&ned=us')
-my_gnp.extract_topic_news('very furry dogs')
-```
-The function should return a dictionary like this one:
-```
-{'very furry dogs':
-  {'cards':
-    [['https://www.sbnation.com/lookit/2017/6/26/15876060/dogs-surfing-video-paddle-board'],
-     ['https://www.washingtonpost.com/news/animalia/wp/2017/06/27/these-states-have-the-fattest-pets-and-they-might-surprise-you/',
-      'https://www.banfield.com/state-of-pet-health/obesity',
-      'https://www.banfield.com/state-of-pet-health',
-      'http://www.prnewswire.com/news-releases/new-banfield-pet-hospital-research-reveals-one-in-three-us-pets-is-overweight-300479528.html',
-      'https://www.usatoday.com/story/news/nation-now/2017/06/27/u-s-pets-getting-fatter-according-new-banfield-pet-hospital-report/428140001/',
-      'http://gazette.com/colorado-humans-are-among-the-fittest-in-the-country.-their-pets-not-so-much./article/1606116',
-      'https://www.banfield.com/Banfield/media/PDF/Downloads/soph/2017-SOPH-Infographic.pdf'],
-
-[...]
-
-    ],
-  'extra_topics': {'Banfield Pet Hospital', 'United States of America'}}
-}
-```
-
-- Or you can ask the parser to dig on its own into the news of the day:
-```
-my_gnp=gnp('hl=en&ned=us')
-my_gnp.dig_into_news(dig_levels=1,
-                     seed_news=None,
-                     seed_headlines=True,
-                     seed_sections=True)
-```
-...or into specific areas or interest:
-```
-my_gnp=gnp('hl=en&ned=us')
-my_gnp.dig_into_news(dig_levels=1,
-                     seed_news={'Business':['NASDAQ','Oil']},
-                     seed_headlines=False,
-                     seed_sections=False)
-```
-...or a combination of them.
-
-In this case the resulting links will be contained in the parser's news dictionary, which is huge and looks just as the examples above, so I will not show it here. A slightly better formatted dictionary can be extracted using the parser's export_news_list method.
+A slightly better formatted dictionary can be extracted using the parser's export_news_list method.
 
 Let me know if you find it useful!
